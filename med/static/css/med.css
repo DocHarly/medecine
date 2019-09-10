@@ -1,0 +1,78 @@
+body {
+    padding-top: 5rem;
+}
+
+.table td, .table th {
+    border-top: 1px solid #9ea1a5;
+}
+
+.main-header {
+    padding-bottom: 2.5rem;
+}
+.nav-link {
+    color: #fff;
+    padding-right: .5rem;
+    padding-left: .5rem;
+}
+
+.settin {
+    padding-right: 0;
+}
+
+.pub_date {
+    display: inline;
+}
+
+.pre-inf {
+    margin-top: 5px;
+    margin-bottom: 12px;
+}
+
+.form-control {
+    padding-top: 0;
+    margin-top: 6px;
+}
+
+.nav-ico {
+    width: 30px;
+    height: 30px;
+    margin: 8px;
+}
+
+.form-signin {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: auto;
+}
+
+#id_username, #id_password, #id_email {
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
+    display: block;
+    width: 100%;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    margin-bottom: 5px;
+}
+
+.save-log {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    display: block;
+    width: 100%;
+}
+
+.img-login {
+    width: 72px;
+    height: 72px;
+}

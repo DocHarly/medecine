@@ -1,0 +1,8 @@
+{% extends 'med/base.html' %}
+
+{% block content %}
+    <h2 class="main-header">{{ service.title }}</h2>
+    <h3>Стоимость: {{ service.price }} руб.</h3><br>
+    <p>Описание: <br><br>{{ service.text }}</p>
+
+{% endblock %}

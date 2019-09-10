@@ -1,0 +1,25 @@
+{% extends 'med/base.html' %}
+
+{% block content %}
+    <h1>Добавить оказанную услугу</h1>
+    <form method="POST" class="post-form">{% csrf_token %}
+        {{ form.non_field_errors }}
+        <div class="form-group">
+            {{ form.client.errors }}
+                <lable for="{{ form.client.id_for_label }}">Пациент: </lable>
+            {{ form.client }}
+        </div>
+        <div class="form-group">
+           {{ form.service.errors }}
+                <lable for="{{ form.service.id_for_label }}">Услуга: </lable>
+           {{ form.service }}
+        </div>
+        <div class="form-group">
+            {{ form.text.errors }}
+                <lable for="{{ form.text.id_for_label }}">Описание: </lable>
+            {{ form.text }}
+        </div>
+        {{ form.media }}
+        <button type="submit" class="save btn btn-success">Сохранить</button>
+    </form>
+{% endblock %}

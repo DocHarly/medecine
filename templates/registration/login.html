@@ -1,0 +1,39 @@
+{% extends 'med/base.html' %}
+{% load staticfiles %}
+{% block content %}
+
+{% if form.errors %}
+<p class="alert alert-danger" role="alert">Ваше имя пользователя или пароль не совпадают. Попробуйте еще раз.</p>
+{% endif %}
+
+{% if next %}
+    {% if user.is_authenticated %}
+    <p class="alert alert-warning" role="alert">У вашей учетной записи нет доступа к этой странице. Для получения доступа,
+    пожалуйста зайдите под нужной учетной записью.</p>
+    {% else %}
+    <p class="alert alert-warning" role="alert">Пожалуйста авторизуйтесь, что бы увидеть эту страницу.</p>
+    {% endif %}
+{% endif %}
+
+<form method="post" action="{% url 'login' %}" class="form-signin text-center">
+{% csrf_token %}
+    <img src="{% static 'img/22.svg' %}" alt="" class="mb-4 img-login">
+<h4>МедЦентр</h4>
+<div class="form-group">
+  <td>{{ form.username.label_tag }}</td>
+  <td>{{ form.username }}</td>
+</div>
+<div>
+  <td>{{ form.password.label_tag }}</td>
+  <td>{{ form.password }}</td>
+</div>
+
+<div>
+  <input type="submit" class="save-log btn btn-lg btn-info btn-lock" value="Войти" />
+  <input type="hidden" name="next" value="{{ next }}" />
+</div>
+{# Assumes you setup the password_reset view in your URLconf #}
+<p><a href="{% url 'password_reset' %}">Забыли пароль?</a></p>
+</form>
+
+{% endblock %}

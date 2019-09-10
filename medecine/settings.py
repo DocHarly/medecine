@@ -25,18 +25,21 @@ SECRET_KEY = '5o^z(#w%f&4zoyvl#k(*q!%&tni*4(((=&%dmjp*1nsqx6f30f'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'docharly.pythonanywhere.com',]
+ALLOWED_HOSTS = ['127.0.0.1', 'docharly.pythonanywhere.com', '192.168.1.46',]
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'dal',
+    'dal_select2',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'bootstrap4',
     'med',
     'clients',
     'services',
@@ -123,3 +126,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+LOGIN_REDIRECT_URL = '/'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

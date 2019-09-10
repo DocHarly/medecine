@@ -1,0 +1,102 @@
+{% extends 'med/base.html' %}
+
+{% block breadcrumbs %}
+    <div class="breadcrumb"><a href="{% url 'med_list' %}">Каталог статей</a></div>
+{% endblock %}
+
+{% block content %}
+{% if user.is_superuser %}
+    <div id="accordion">
+      <div class="card">
+        <div class="card-header" id="headingOne">
+          <h5 class="mb-0">
+            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+              <h4>Отчет за текущий день</h4>
+            </button>
+          </h5>
+        </div>
+
+        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+          <div class="card-body">
+            <h4><b>Оказано услуг: {{ total_c_day }} Итого: {{ total_day.total_d }}</b></h4>
+              {% for med in meds_day %}
+                    <tr>
+                        <td>
+                            <div class="block">
+                                <a class="btn btn-default" href="{% url 'med_edit' pk=med.pk %}"><span class="far fa-edit"></span></a>
+                                <a class="btn btn-default" href="{% url 'med_delete' pk=med.pk %}"><span class="far fa-trash-alt"></span></a>
+                                <h3><a href="{% url 'services:service_detail' pk=med.service.pk %}">{{ med.service.title }}</a> -- {{ med.service.price }} руб.</h3>
+                                <p><b>Врач: </b><a href="#">{{ med.author.get_full_name }}</a></p>
+                                <p><b>Пациент: </b><a href="{% url 'clients:client_detail' pk=med.service.pk %}">{{ med.client.name }} {{ med.client.fam }}</a></p>
+                                <pre><b>Дата визита: </b> {{ med.published_date }}</pre>
+                                <p><b>Примечания: </b><br>{{ med.text|linebreaksbr }}</p>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header" id="headingTwo">
+          <h5 class="mb-0">
+            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              <h4>Отчет за последние 7 дней</h4>
+            </button>
+          </h5>
+        </div>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+          <div class="card-body">
+            <h4><b>Оказано услуг: {{ total_c_week }} Итого: {{ total_week.total_d }}</b></h4>
+              {% for med in meds_week %}
+                    <tr>
+                        <td>
+                            <div class="block">
+                                <a class="btn btn-default" href="{% url 'med_edit' pk=med.pk %}"><span class="far fa-edit"></span></a>
+                                <a class="btn btn-default" href="{% url 'med_delete' pk=med.pk %}"><span class="far fa-trash-alt"></span></a>
+                                <h3><a href="{% url 'services:service_detail' pk=med.service.pk %}">{{ med.service.title }}</a> -- {{ med.service.price }} руб.</h3>
+                                <p><b>Врач: </b><a href="#">{{ med.author.get_full_name }}</a></p>
+                                <p><b>Пациент: </b><a href="{% url 'clients:client_detail' pk=med.service.pk %}">{{ med.client.name }} {{ med.client.fam }}</a></p>
+                                <pre><b>Дата визита: </b> {{ med.published_date }}</pre>
+                                <p><b>Примечания: </b><br>{{ med.text|linebreaksbr }}</p>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header" id="headingThree">
+          <h5 class="mb-0">
+            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              <h4>Отчет за месяц</h4>
+            </button>
+          </h5>
+        </div>
+        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+          <div class="card-body">
+            <h4><b>Оказано услуг: {{ total_c_mounth }} Итого: {{ total_mounth.total_d }} руб.</b></h4>
+              {% for med in meds_mounth %}
+                    <tr>
+                        <td>
+                            <div class="block">
+                                <a class="btn btn-default" href="{% url 'med_edit' pk=med.pk %}"><span class="far fa-edit"></span></a>
+                                <a class="btn btn-default" href="{% url 'med_delete' pk=med.pk %}"><span class="far fa-trash-alt"></span></a>
+                                <h3><a href="{% url 'services:service_detail' pk=med.service.pk %}">{{ med.service.title }}</a> -- {{ med.service.price }} руб.</h3>
+                                <p><b>Врач: </b><a href="#">{{ med.author.get_full_name }}</a></p>
+                                <p><b>Пациент: </b><a href="{% url 'clients:client_detail' pk=med.service.pk %}">{{ med.client.name }} {{ med.client.fam }}</a></p>
+                                <pre><b>Дата визита: </b> {{ med.published_date }}</pre>
+                                <p><b>Примечания: </b><br>{{ med.text|linebreaksbr }}</p>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+{% else %}
+    <p class="alert alert-warning" role="alert">У вашей учетной записи нет доступа к содержимому этой страницы. Для получения доступа зайдите под другой учетной записью.</p>
+{% endif %}
+{% endblock %}

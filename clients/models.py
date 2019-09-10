@@ -7,6 +7,7 @@ class Clients(models.Model):
     name = models.CharField(max_length=200)
     fam = models.CharField(max_length=200)
     date_birthday = models.DateField()
+    med_card = models.TextField(blank=True, null=True)
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
 

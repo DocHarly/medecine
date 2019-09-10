@@ -1,0 +1,34 @@
+{% extends 'med/base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+    <h2 class="main-header">Список пациентов
+        {% if user.is_authenticated %}
+            <a href="{% url 'clients:client_new' %}" class="top-menu btn btn-outline-primary btn-sm">Добавить <span class="far fa-plus-square"></span></a>
+        {% endif %}
+    </h2>
+    {% bootstrap_pagination client_list %}
+    <div class="table-responsive">
+        <table class="table table-striped table-sm">
+            <tbody>
+                {% for client in client_list %}
+                    <tr>
+                        <td>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-sm-11"></div>
+                                    <div class="col-sm-1 settin">
+                                        <a class="btn-sm btn-default" href="{% url 'clients:client_edit' pk=client.pk %}"><span class="far fa-edit"></span></a>
+                                        <a class="btn-sm btn-default" href="{% url 'clients:client_delete' pk=client.pk %}"><span class="far fa-trash-alt"></span></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <h3><a href="{% url 'clients:client_detail' pk=client.pk %}">{{ client.name }} {{ client.fam }}</a></h3>
+                            <pre><b>Дата рождения: </b> {{ client.date_birthday }}</pre>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% bootstrap_pagination client_list %}
+    </div>
+{% endblock %}
